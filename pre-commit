@@ -42,13 +42,6 @@ if [ -n "$files" ]; then
 			errors=("${errors[@]}" "$output")
 		fi
 		
-		# check if the file is a test file. 
-		# if yes, ignores the file.
-		$file | grep '.*FILE:.*test.*' &> /dev/null
-		if [ $? == 0 ]; then
-        		continue
-		fi
-
 		# checks if the phpcs output contains '| ERROR |'
 		output=`phpcs --standard=PSR2 --extensions=php --encoding=utf8 --report=full $file | grep '|\s*ERROR\s*|'`
 
